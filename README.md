@@ -1,14 +1,21 @@
 # To-Binary
 A Rust Library For Conversion To A **Binary String** Supporting:
 
-* UTF-8 Strings
+* Strings
+* str
 * Hexadecimal Strings
 * Vector of Bytes
 * Slice of Bytes
 
-It also allows the counting of bits and asserting whether a given input is a binary string.
+It also allows: 
+
+* Counting of Bits and Bytes
+* Asserting Whether a Given Input is a Binary String
+* Removing/Adding Whitespace Between Bytes
 
 ## How To Use
+
+Read **Examples** and read documentation
 
 ### FromBinary
 
@@ -21,7 +28,7 @@ fn main(){
     assert_eq!(bin_string,"11111111101010100001000011111111");
     
     // UTF-8
-    let x = ToBinary::from_utf8(String::from("Test"));
+    let x = ToBinary::from_string(String::from("Test"));
     assert_eq!(bin_string_2,"01010100011001010111001101110100")
 }
 ```

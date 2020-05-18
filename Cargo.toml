@@ -1,11 +1,11 @@
 [package]
 name = "to-binary"
-version = "0.1.0"
-authors = ["0xSilene <51803887+0xSilene@users.noreply.github.com>"]
+version = "0.2.0"
+authors = ["0xSilene <51803887+0xSilene@users.noreply.github.com>,AtropineTears"]
 edition = "2018"
-description = "Converts From Hex, UTF-8, Vector of Bytes, or a Byte Slice to a Binary String"
+description = "Converts From Hex, UTF-8, Vector of Bytes, or a Byte Slice to a Binary String And Implements Many Useful Functions For Binary Strings"
 keywords = ["binary","string","bin","conversion","hex"]
-categories = ["cryptography", "science","algorithms"]
+categories = ["data-structures", "encoding","text-processing"]
 license = "MIT OR Apache-2.0"
 readme = "README.md"
 
