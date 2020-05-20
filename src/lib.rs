@@ -182,7 +182,7 @@ impl BinaryString {
     /// - `1`
     /// - `whitespace`
     ///
-    /// TODO: Add a check for whitespace to be every 9nth character
+    /// TODO: Add a check for whitespace to be every 8th character
     pub fn assert_binary_whitespace(&self) -> bool {
         for x in self.0.chars() {
             if x == '0' || x == '1' || x == ' ' {
