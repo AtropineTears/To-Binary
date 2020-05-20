@@ -1,4 +1,4 @@
-
+#[cfg(test)]
 mod conversion {
     use to_binary::BinaryString;
     #[test]
@@ -54,5 +54,29 @@ mod conversion {
         let bin = BinaryString::from("Hello");
 
         assert_eq!(bin.0, "0100100001100101011011000110110001101111")
+    }
+}
+#[cfg(test)]
+mod advanced_tests {
+    #[allow(unused_imports)]
+    use to_binary::{BinaryString,BinaryError};
+    #[test]
+    fn single_byte_test_with_spaces() {
+        // Single u8 Byte
+        let byte: u8 = 111u8;
+    
+        // `BinaryString` from a Single Byte
+        let bin_string = BinaryString::from(byte);
+    
+        // Attempt To Add Spaces
+        let spaces = bin_string.add_spaces().unwrap();
+
+        // Removes Spaces
+        let removed_spaces = spaces.remove_spaces();
+    
+        // Assert Both Strings Are Equal
+        assert_eq!(bin_string, spaces);
+        assert_eq!(bin_string,removed_spaces);
+        assert_eq!(spaces,removed_spaces);
     }
 }

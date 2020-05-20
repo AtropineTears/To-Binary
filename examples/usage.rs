@@ -1,7 +1,7 @@
 #[allow(unused_imports)]
-use to_binary::{BinaryString,BinaryError};
+use to_binary::{BinaryError, BinaryString};
 
-fn main(){
+fn main() {
     // A Demo For Working With Whitespace
     work_with_whitespace();
 
@@ -12,7 +12,7 @@ fn main(){
     let check_if_binary: bool = x.assert_binary();
 
     // Assert Input Is Binary
-    assert_eq!(check_if_binary,true);
+    assert_eq!(check_if_binary, true);
 
     // Retrieve Sizes Of Binary Input (Bits and Bytes)
     let size_in_bits = x.bits().unwrap();
@@ -25,14 +25,13 @@ fn main(){
     // Assert Sizes Are Correct
     assert_eq!(verify_bit_length, true);
     assert_eq!(verify_byte_length, true);
-
 }
 
 fn generate() -> BinaryString {
-    return BinaryString::from_hex("321155ED37271DE1A9C1914A92A5DFE4").unwrap()
+    return BinaryString::from_hex("321155ED37271DE1A9C1914A92A5DFE4").unwrap();
 }
 
-fn work_with_whitespace(){
+fn work_with_whitespace() {
     // Generate From &str "Hello"
     let initial = BinaryString::from("Hello");
 
@@ -43,5 +42,5 @@ fn work_with_whitespace(){
     let removed_spaces = spaces.remove_spaces();
 
     // Asserts The Initial Result And The One With Removed Spaces Are The Same
-    assert_eq!(initial,removed_spaces);
+    assert_eq!(initial, removed_spaces);
 }

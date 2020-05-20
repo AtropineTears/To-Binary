@@ -1,3 +1,4 @@
+
 /// # To-Binary: A Binary String Conversion Library
 /// There are two types of Binary Strings that are present:
 /// - "Binary String (0bString)"
@@ -7,8 +8,9 @@
 use hex::FromHexError;
 use std::fmt;
 
-/// # Error-Handling
-/// This is a enum that is used specifically for Error-Handling
+
+/// # `BinaryString` Error-Handling
+/// This is a enum that is used specifically for **Error-Handling**
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd, Hash)]
 pub enum BinaryError {
     InvalidCharacters,
@@ -18,25 +20,22 @@ pub enum BinaryError {
 }
 
 /// # BinaryString (`0bString` + `0bWString`)
-/// This struct is the main struct for dealing with **Binary Strings** and **Binary Whitespace Strings**.
-/// 
-/// It is a tulpe struct and only has a single, public field which is a `String`.
-/// 
+/// This Struct is the Main Struct for Dealing with **Binary Strings** and **Binary Whitespace Strings**.
+///
+/// It is a **Tuple Struct** that only has a **Single, Public Field** which is a `String` and can be accessed with `self.0`.
+///
 /// ## How To Access The `String` Field
 /// ```
 /// use to_binary::BinaryString;
-/// 
+///
 /// // Generate Binary String From &str
 /// let x = BinaryString::from("Hello");
-/// 
+///
 /// // Access The Public "String" Field And Assign It To bin_string using field
 /// let bin_string: String = x.0;
-/// 
-/// // Or, Destructure The Tuple Struct
-/// let BinaryString(bin_string_2) = x;
-/// 
-/// // Asserts Both Are The Same
-/// assert_eq!(bin_string,bin_string_2);
+///
+/// // Print Out Information
+/// println!("{}",bin_string);
 /// ```
 #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Default)]
 pub struct BinaryString(pub String);
@@ -50,6 +49,7 @@ pub struct BinaryString(pub String);
 /// - Asserting Bytes
 /// - Counting Bits
 /// - Counting Bytes
+#[deprecated]
 pub struct BinaryUsage;
 
 // &str
@@ -93,6 +93,17 @@ impl From<&[u8]> for BinaryString {
         return BinaryString(bin_string);
     }
 }
+// u8 array of 32
+impl From<[u8; 32]> for BinaryString {
+    fn from(array: [u8; 32]) -> Self {
+        let mut bin_string: String = String::new();
+
+        for byte in &array {
+            bin_string.push_str(&format!("{:08b}", byte));
+        }
+        return BinaryString(bin_string);
+    }
+}
 // u8 vector
 impl From<Vec<u8>> for BinaryString {
     fn from(bytes: Vec<u8>) -> BinaryString {
@@ -104,10 +115,19 @@ impl From<Vec<u8>> for BinaryString {
         return BinaryString(bin_string);
     }
 }
+// u8 byte
+impl From<u8> for BinaryString {
+    fn from(byte: u8) -> BinaryString {
+        let mut bin_string: String = String::new();
+        
+        bin_string.push_str(&format!("{:08b}", byte));
+        return BinaryString(bin_string);
+    }
+}
 
 // Other Conversions
 impl BinaryString {
-    /// Takes as input hexadecimal and outputs a BinaryString
+    /// Takes as input hexadecimal and outputs a Result containing a `BinaryString` and on Error, `FromHexError`
     pub fn from_hex<T: AsRef<[u8]>>(n: T) -> Result<BinaryString, FromHexError> {
         // Decode as Hexadecimal and Unwrap
         let bytes: Vec<u8> = hex::decode(n).unwrap();
@@ -223,13 +243,24 @@ impl BinaryString {
             Err(BinaryError::UnknownError)
         }
     }
-    /// Removes All Whitespace From Binary String
-    ///
-    /// TODO | FIX THIS FUNCTION
+    /// Removes All Whitespace From Binary String And Returns A `BinaryString`
     pub fn remove_spaces(&self) -> BinaryString {
         BinaryString(self.0.chars().filter(|c| !c.is_whitespace()).collect())
     }
-    /// Adds Whitespace Between Every Byte
+    /// Adds Whitespace Between Every **Byte** (8 bits)
+    /// 
+    /// ## Example Usage
+    /// ```
+    /// // Imports
+    /// use to_binary::{BinaryString,BinaryError};
+    /// 
+    /// // Generate `BinaryString` from &str "Test String"
+    /// let x = BinaryString::from("Test String");
+    /// 
+    /// // Returns a `BinaryString` With Spaces Between Every Byte (8 bits)
+    /// let bin_with_spaces = x.add_spaces().unwrap();
+    /// 
+    /// ```
     pub fn add_spaces(&self) -> Result<BinaryString, BinaryError> {
         // Checks to See If Its A Binary String (0bString)
         if self.assert_binary_string() == true && self.assert_bytes() {
@@ -257,8 +288,8 @@ impl BinaryString {
     }
 }
 
-
 // Keep For Now
+#[allow(deprecated)]
 impl BinaryUsage {
     /// Asserts The Input Is A `Binary String`, or a string with only:
     ///

@@ -5,6 +5,7 @@ fn main() {
     str_func();
     string();
     vector();
+    byte();
 }
 
 fn hexadecimal() {
@@ -57,4 +58,17 @@ fn vector() {
     // Prints Out Information
     println!("Vector of [111,23,55,28] u8 bytes");
     println!("Binary String {}", bin_string);
+}
+
+fn byte() {
+    // Single u8 Byte
+    let byte: u8 = 111u8;
+
+    // `BinaryString` from a Single Byte
+    let bin_string = BinaryString::from(byte);
+
+    // Attempt To Add Spaces
+    let spaces = bin_string.add_spaces().unwrap();
+
+    assert_eq!(bin_string, spaces);
 }

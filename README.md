@@ -1,35 +1,71 @@
-# To-Binary
-A Rust Library For Conversion To A **Binary String** Supporting:
+# To-Binary: A Rust Crate For Conversion To A `BinaryString`
+A Rust Library For Conversion To new type `BinaryString`. `BinaryString` is a singled-fielded, tuple struct that holds a **BinaryString** or **BinaryWhitespaceString** and is of the type `String`.
 
-* Strings
-* str
-* Hexadecimal Strings
-* Vector of Bytes
-* Slice of Bytes
+It allows: 
 
-It also allows: 
-
+* Asserting Whether a Given Input Is a Binary String
+* Asserting Number of Bits/Bytes
 * Counting of Bits and Bytes
-* Asserting Whether a Given Input is a Binary String
-* Removing/Adding Whitespace Between Bytes
+* Adding/Removing Whitespace Between Bytes
 
 ## How To Use
 
-Read **Examples** and read documentation
+Read **Examples** and **Read The Documentation**
 
-### FromBinary
+### Conversion To `BinaryString`
+
+These examples show how you can convert from one type to the `BinaryString` type.
 
 ```rust
-use to_binary::{ToBinary,FromBinary};
+use to_binary::{BinaryString,BinaryError};
 
 fn main(){
     // Hexadecimal
-    let bin_string = ToBinary::from_hex("FFAA10FF").unwrap();
-    assert_eq!(bin_string,"11111111101010100001000011111111");
+    let hex = BinaryString::from_hex("2879E653864EA6047FEBBBD9AE6DA8DA").unwrap();
     
-    // UTF-8
-    let x = ToBinary::from_string(String::from("Test"));
+    // String
+    let x = BinaryString::from(String::from("Test"));
     assert_eq!(bin_string_2,"01010100011001010111001101110100")
+  
+  	// str
+  	let y = BinaryString::from("Hello World");
+  
+  	// Byte
+  	let byte = BinaryString::from(118u8);
+  	
+  	// Vector
+  	let vector = vec![36,57,123,38,2];
+  	let bin_vector = BinaryString::from(vector);
+}
+```
+
+### Adding or Removing Whitespace From A `BinaryString`
+
+This example shows how you can add whitespace between bytes or remove whitespace from a `BinaryString`
+
+```rust
+use to_binary::{BinaryString,BinaryError};
+
+fn test_whitespace() {
+        // Conversion To `BinaryString` Struct From Hex
+        let x: BinaryString = BinaryString::from_hex("FF8628AA").unwrap();
+
+        // Creates New Struct With Spaces
+        let with_spaces: BinaryString = x.add_spaces().unwrap();
+
+        // Removes Spaces And Creates New Struct
+        let removed_spaces: BinaryString = with_spaces.remove_spaces();
+
+        // Prints Out Information
+        println!("x: {}", x);
+        println!("with_spaces : {}", with_spaces);
+        println!("removed spaces: {}", removed_spaces);
+
+        let is_true: bool = with_spaces.assert_binary_whitespace();
+
+        // Asserts It Works And The Answer Without Spaces Is Same As Initial
+        assert_eq!(is_true, true);
+        assert_eq!(x, removed_spaces);
 }
 ```
 
