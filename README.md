@@ -1,5 +1,5 @@
 # To-Binary: A Rust Crate For Conversion To A `BinaryString`
-![Crates.io](https://img.shields.io/crates/v/to-binary?style=flat-square)![Crates.io](https://img.shields.io/crates/l/to-binary?style=flat-square)https://docs.rs/to-binary/badge.svg?version=0.2.1
+![Crates.io](https://img.shields.io/crates/v/to-binary?style=flat-square)![Crates.io](https://img.shields.io/crates/l/to-binary?style=flat-square)
 
 A Rust Library For Conversion To new type `BinaryString`. `BinaryString` is a singled-fielded, tuple struct that holds a **BinaryString** or **BinaryWhitespaceString** and is of the type `String`.
 
@@ -68,6 +68,35 @@ fn test_whitespace() {
         // Asserts It Works And The Answer Without Spaces Is Same As Initial
         assert_eq!(is_true, true);
         assert_eq!(x, removed_spaces);
+}
+```
+
+### Using Binary Methods On `BinaryString`
+
+There are many `BinaryString` Methods That Can Be Used. This is a few of them that may be useful.
+
+```rust
+fn main(){
+  	// Conversion To `BinaryString` Struct From Hex
+  	let x: BinaryString = BinaryString::from_hex("FF8628AA").unwrap();
+  
+  	// Checks Whether The Input Is Binary
+    let check_if_binary: bool = x.assert_binary();
+
+    // Assert Input Is Binary
+    assert_eq!(check_if_binary, true);
+
+    // Retrieve Sizes Of Binary Input (Bits and Bytes)
+    let size_in_bits = x.bits().unwrap();
+    let size_in_bytes = x.bytes().unwrap();
+
+    // Verifies Sizes Of Binary Inputs
+    let verify_bit_length: bool = x.assert_bit_length(size_in_bits);
+    let verify_byte_length: bool = x.assert_byte_length(size_in_bytes);
+
+    // Assert Sizes Are Correct
+    assert_eq!(verify_bit_length, true);
+    assert_eq!(verify_byte_length, true);
 }
 ```
 
