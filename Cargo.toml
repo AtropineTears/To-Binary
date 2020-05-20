@@ -1,6 +1,6 @@
 [package]
 name = "to-binary"
-version = "0.2.1"
+version = "0.3.0"
 authors = ["0xSilene <51803887+0xSilene@users.noreply.github.com>, AtropineTears"]
 edition = "2018"
 repository = "https://github.com/0xSilene/To-Binary"
@@ -18,6 +18,9 @@ path = "examples/conversion.rs"
 [[example]]
 name = "usage"
 path = "examples/usage.rs"
+
+[badge]
+travis-ci = { repository = "0xSilene/To-Binary", branch = "master" }
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
