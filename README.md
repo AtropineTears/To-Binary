@@ -1,5 +1,7 @@
 # To-Binary: A Rust Crate For Conversion To A `BinaryString`
-[![Crates.io](https://img.shields.io/crates/v/to-binary?style=flat-square)](https://crates.io/crates/to-binary)![Crates.io](https://img.shields.io/crates/l/to-binary?style=flat-square)[![Build Status](https://travis-ci.org/0xSilene/To-Binary.svg?branch=master)](https://travis-ci.org/0xSilene/To-Binary)
+[![Crates.io](https://img.shields.io/crates/v/to-binary?style=flat-square)](https://crates.io/crates/to-binary)
+![Crates.io](https://img.shields.io/crates/l/to-binary?style=flat-square)
+[![Build Status](https://travis-ci.org/0xSilene/To-Binary.svg?branch=master)](https://travis-ci.org/0xSilene/To-Binary)
 
 A Rust Library For Conversion To new type `BinaryString`. `BinaryString` is a singled-fielded, tuple struct that holds a **BinaryString** or **BinaryWhitespaceString** and is of the type `String`.
 
