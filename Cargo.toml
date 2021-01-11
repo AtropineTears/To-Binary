@@ -1,10 +1,10 @@
 [package]
 name = "to-binary"
-version = "0.3.0"
-authors = ["0xSilene <51803887+0xSilene@users.noreply.github.com>, AtropineTears"]
+version = "0.3.1"
+authors = ["0xAtropine"]
 edition = "2018"
-repository = "https://github.com/0xSilene/To-Binary"
-homepage = "https://github.com/0xSilene/To-Binary"
+repository = "https://github.com/0xAtropine/To-Binary"
+homepage = "https://github.com/0xAtropine/To-Binary"
 description = "Converts From Hex, UTF-8, Vector of Bytes, or a Byte Slice to a Binary String And Implements Many Useful Functions For Binary Strings"
 keywords = ["binary","string","bin","conversion","hex"]
 categories = ["data-structures", "encoding","text-processing"]
@@ -20,7 +20,7 @@ name = "usage"
 path = "examples/usage.rs"
 
 [badge]
-travis-ci = { repository = "0xSilene/To-Binary", branch = "master" }
+travis-ci = { repository = "0xAtropine/To-Binary", branch = "master" }
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
